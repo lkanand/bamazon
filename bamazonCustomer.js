@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
+var Table = require("cli-table");
 
 var connection = mysql.createConnection({
 	host: "127.0.0.1",
@@ -20,14 +21,12 @@ function promptCustomer() {
 		function(err, res) {
 			if(err)
 				throw err;
-
-			console.log("Store Inventory");
-			console.log("------------------------------");
-			for(var i = 0; i < res.length; i++) {
-				console.log("Item ID: " + res[i].item_id + " | " + "Item Name: " + res[i].product_name + 
-					" | " + "Item Price: $" + res[i].price.toFixed(2));
-			}
-			console.log("------------------------------");
+		var table = new Table({
+			head: ["Item ID", "Item Name", "Item Price"]
+		});	
+			for(var i = 0; i < res.length; i++)
+				table.push([res[i].item_id, res[i].product_name, "$" + res[i].price.toFixed(2)]);
+			console.log(table.toString());
 
 			inquirer.prompt([
 				{
@@ -35,9 +34,10 @@ function promptCustomer() {
 					message: "What product would you like to buy?",
 					name: "productToBuy",
 					choices: function() {
-						var arrayOfChoices = ["Exit Store"];
+						var arrayOfChoices = [];
 						for(var i = 0; i < res.length; i++) 
 							arrayOfChoices.push(res[i].item_id + " (" + res[i].product_name + ")");
+						arrayOfChoices.push("Exit Store");
 						return arrayOfChoices;
 					}
 				}
@@ -60,12 +60,14 @@ function promptForQuantity(productId) {
 		{
 			type: "input",
 			name: "numberOfUnits",
-			message: "How many units would you like to purchase?"
+			message: "How many units would you like to purchase? (Enter 'B' to return to inventory)"
 		}
 	]).then(function(response){
-		if(isNaN(parseInt(response.numberOfUnits)) || parseInt(response.numberOfUnits) < 0) {
-			console.log("Please enter a valid number when asked for amount you would like to purchase.");
-			promptForQuantity();
+		if(response.numberOfUnits === "B")
+			promptCustomer();
+		else if(!(/^\d+$/.test(response.numberOfUnits))) {
+			console.log("Please enter a valid positive integer when asked for amount you would like to purchase.");
+			promptForQuantity(productId);
 		}
 		else
 			validateOrder(productId, response.numberOfUnits);
@@ -84,20 +86,22 @@ function validateOrder(productId, number) {
 
 			if(parseInt(res[0].stock_quantity) < parseInt(number)) {
 				console.log("Sorry, we have insufficient stock to fulfill this order");
-				console.log("------------------------------");
-				promptCustomer();
+				setTimeout(function(){
+					promptCustomer()}, 4000);
 			}
 			else {
 				var purchaseCost = parseFloat(res[0].price) * parseInt(number);
 				console.log("Your purchase cost you: $" + purchaseCost.toFixed(2));
-				console.log("------------------------------");
 				var updatedStock = parseInt(res[0].stock_quantity) - parseInt(number);
-				updateTableForCustomerOrder(productId, updatedStock);
+				var updatedSales = parseFloat(res[0].product_sales) + purchaseCost;
+				updateStockForCustomerOrder(productId, updatedStock);
+				setTimeout(function(){
+					updateSalesForCustomerOrder(productId, updatedSales)}, 4000);
 			}
 		});
 }
 
-function updateTableForCustomerOrder(productId, updatedStock) {
+function updateStockForCustomerOrder(productId, updatedStock) {
 	var query;
 	if(updatedStock > 0) {
 		query = connection.query(
@@ -113,7 +117,6 @@ function updateTableForCustomerOrder(productId, updatedStock) {
 			function(err, res) {
 				if(err)
 					throw err;
-				promptCustomer();
 			});
 	}
 	else {
@@ -125,9 +128,31 @@ function updateTableForCustomerOrder(productId, updatedStock) {
 			function(err, res) {
 				if(err)
 					throw err;
+			});
+	}
+}
+
+function updateSalesForCustomerOrder(productId, updatedSales) {
+	var query;
+	if(updatedSales > 0) {
+		query = connection.query(
+			"UPDATE products SET ? WHERE ?",
+			[
+				{
+					product_sales: updatedSales
+				},
+				{
+					item_id: productId
+				}
+			],
+			function(err, res) {
+				if(err)
+					throw err;
 				promptCustomer();
 			});
 	}
+	else
+		promptCustomer();
 }
 
 promptCustomer();
