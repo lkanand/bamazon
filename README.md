@@ -10,6 +10,7 @@ bamazon is a command line application that offers full functionality for managin
 
 Once prompted, the customer can navigate to the item he / she wishes to purchase by using the `up arrow` and `down arrow` keys.
 
+
 <p align = 'center'>
   <img src = '/bamazon_screenshots/bamazonCustomer.js_screenshots/customer_menu_navigation.gif' width = '400'>
 </p>
