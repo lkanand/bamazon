@@ -4,23 +4,23 @@ bamazon is a command line application that offers full functionality for trackin
 
 ## Using Bamazon
 
-To use bamazon, download this repository to your computer and navigate to its folder using Terminal or Bash. Enter `npm install` in order to install the basic node modules as well as the `inquirer`, `mysql` and `cli-table` packages in your folder. After installing the npm packages required by bamazon, confirm that you have established a MySQL server on your computer. If not, install MAMP and MySQL to do so. Once you have established a MySQL server, open `bamazon.sql` in MySQL Workbench. Review the SQL script and modify the `products` and `departments` to match your store's inventory, overhead costs and classification system. Run `bamazon.sql` in MySQL Workbench to create the bamazon database on your MySQL server. After creating the bamazon database, open `bamazonCustomer.js`, `bamazonManager.js` and `bamazonSupervisor.js` and modify the `host`, `port`, `user` and `password` parameters used to initialize the `connection` variable. The information inputted in these parameters should refer to the MySQL server on your computer. After completing these steps, enter `node bamazonCustomer.js`, `bamazonManager.js` or `bamazonSupervisor.js` to begin using bamazon.
+To use bamazon, download this repository to your computer and navigate to its folder using Terminal or Bash. Enter `npm install` in order to install the basic node modules as well as the `inquirer`, `mysql` and `cli-table` packages in your folder. After installing the npm packages required by bamazon, confirm that you have established a MySQL server on your computer. If not, install MAMP and MySQL to do so. Once you have established a MySQL server, open `bamazon.sql` in MySQL Workbench. Review the SQL script and modify the `products` and `departments` to match your store's inventory, overhead costs and classification system. Run `bamazon.sql` in MySQL Workbench to create the bamazon database on your MySQL server. After creating the bamazon database, open `bamazonCustomer.js`, `bamazonManager.js` and `bamazonSupervisor.js` and modify the `host`, `port`, `user` and `password` parameters used to initialize the `connection` variable. The information inputted in these parameters should refer to the MySQL server on your computer. After completing these steps, enter `node bamazonCustomer.js`, `bamazonManager.js` or `bamazonSupervisor.js` to run the program.
 
 ### Which Program Should I Use?
 
-    * Use `bamazonCustomer.js` if:
-        ** You would like to view the products for sale
-        ** You would like to make a purchase
+* Use `bamazonCustomer.js` if:
+    ** You would like to view the products for sale
+    ** You would like to make a purchase
     
-    * Use `bamazonManager.js` if:
-        ** You would like to view the store's entire inventory
-        ** You would like to see which products are running low
-        ** You would like to add to a product's inventory
-        ** You would like to add a new product to the store's inventory
+* Use `bamazonManager.js` if:
+    ** You would like to view the store's entire inventory
+    ** You would like to see which products are running low
+    ** You would like to add to a product's inventory
+    ** You would like to add a new product to the store's inventory
     
-    * Use 'bamazonSupervisor.js' if:
-        ** You would like to add a new department to the store's product classification system
-        ** You would like to view the store's revenue and profits by department
+* Use 'bamazonSupervisor.js' if:
+    ** You would like to add a new department to the store's product classification system
+    ** You would like to view the store's revenue and profits by department
 
 ### bamazonCustomer.js
 
@@ -30,7 +30,7 @@ When `bamazonCustomer.js` runs, it displays the store's inventory and prompts th
   <img src = '/bamazon_screenshots/bamazonCustomer/screenshot_one.png' width = '400'>
 </p>
 
-Once prompted, the customer can navigate to the item he / she wishes to purchase by using the `↑` and `↓` keys.
+Once prompted, the customer can select the item he / she wishes to purchase by using the `↑` and `↓` keys.
 
 <p align = 'center'>
   <img src = '/bamazon_screenshots/bamazonCustomer/gif_one.gif' width = '500'>
@@ -52,19 +52,19 @@ However, if the store can fulfill the customer's order, the program will notify 
 
 ### bamazonManager.js
 
-When `bamazonManager.js` runs, it displays a menu screen that prompts the store's manager to select one of five options:
+When `bamazonManager.js` runs, it displays a menu screen that prompts the store's manager to select one of five actions:
 
-    * View Products for Sale
-    * View Low Inventory
-    * Add to Inventory
-    * Add New Product
-    * Exit
+* View Products for Sale
+* View Low Inventory
+* Add to Inventory
+* Add New Product
+* Exit
 
-The manager can navigate to one of these options using the `↑` and `↓` keys.
+The manager can select one of these actions by using the `↑` and `↓` keys.
 
 #### View Products for Sale
 
-If the manager selects this option from the menu, then the program will display a table of the store's entire inventory. For each product in stock, the table will include the product's id, its name, its price and the number of units in stock. After displaying this table, the program will prompt the manager to choose another option.
+If the manager selects this action, the program will display a table of the store's entire inventory. For every distinct product in the inventory, the table will include its id, name, price and the number of units in stock. After displaying this table, the program will prompt the manager to choose another action.
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/gif_one.gif' width = '400'>
@@ -72,7 +72,7 @@ If the manager selects this option from the menu, then the program will display 
 
 #### View Low Inventory
 
-If the manager wishes to view which products appear in the store's inventory fewer than five times, he / she can select `View Low Inventory`. The program will return a table listing the id, name, price and quantity for every product the store is running low on. Once again, the program will prompt the manager to choose another option after displaying this table.
+If the manager wishes to view which products appear in the store's inventory fewer than five times, he / she can select `View Low Inventory`. The program will return a table listing the id, name, price and quantity for every product the store is running low on. Once again, the program will prompt the manager to choose another action after displaying this table.
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/gif_two.gif' width = '400'>
@@ -80,7 +80,7 @@ If the manager wishes to view which products appear in the store's inventory few
 
 #### Add to Inventory
 
-If the store receives a shipment of an existing item, the manager can select this option to update the inventory. The program will then ask the manager for the product name and the amount to add. If at any point in this process the manager realizes that he / she has made a mistake, he / she can navigate back to the menu by selecting `Abort` or entering `B`.  After successfully adding inventory, the program will direct the manager back to the menu screen.
+If the store receives a shipment of an existing item, the manager can select this action to update the inventory. The program will ask the manager for the product name and the amount to add. If at any point in this process the manager realizes that he / she has made a mistake, he / she can navigate back to the menu by selecting `Abort` or entering `B`.  After successfully adding inventory, the program will ask the manager to choose another action.
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/gif_three.gif' width = '400'>
@@ -88,7 +88,7 @@ If the store receives a shipment of an existing item, the manager can select thi
 
 #### Add New Product
 
-If the store receives a product that is not already included in the inventory table, the manager should select this option. The program will confirm that the manager does in fact want to add a new product to the inventory and then ask a series of questions about the product (name, department, price, quantity). As with `Add to Inventory`, the manager will be able to navigate back to the menu if he / she realizes that a mistake has been made.
+If the store receives a product that is not already included in the inventory table, the manager should select this action. The program will confirm that the manager does in fact want to add a new product to the inventory and then ask a series of questions about the product (name, department, price, quantity). As with `Add to Inventory`, the manager will be able to navigate back to the menu if he / she realizes that a mistake has been made. After successfully adding a new product, the program will ask the manager to choose another action.
 
 In the example below, the manager adds four cats costing $200.00 to the store's inventory.
 
@@ -98,13 +98,13 @@ In the example below, the manager adds four cats costing $200.00 to the store's 
 
 The program updates the inventory and low inventory tables accordingly:
 
-##### Inventory Table
+<center>##### Inventory Table</center>
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/screenshot_one.png' width = '400'>
 </p>
 
-##### Low Inventory Table
+<center>##### Low Inventory Table</center>
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/screenshot_two.png' width = '400'>
@@ -120,16 +120,16 @@ In the example below, the manager wants to add two Ferraris to the inventory. Un
 
 #### Exit
 
-The manager can select this option to exit out of the program.
+The manager can select `Exit` to leave the program.
 
 ### bamazonSupervisor.js
-When `bamazonSupervisor.js` runs, it displays a menu screen that prompts the store's supervisor to select one of three options:
+When `bamazonSupervisor.js` runs, it displays a menu screen that prompts the store's supervisor to select one of three actions:
 
-    * View Product Sales by Department
-    * Create New Department
-    * Exit
+* View Product Sales by Department
+* Create New Department
+* Exit
 
-The supervisor can navigate to one of these options using the `↑` and `↓` keys.
+The supervisor can select one of these actions by using the `↑` and `↓` keys.
 
 #### View Product Sales by Department
 
@@ -157,4 +157,4 @@ When sales of products classified as Automobiles are made, the Product Sales by 
 
 #### Exit
 
-The supervisor can select this option to exit out of the program.
+The supervisor can select `Exit` to leave the program.
