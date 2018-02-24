@@ -9,18 +9,18 @@ To use bamazon, download this repository to your computer and navigate to its fo
 ### Which Program Should I Use?
 
 * Use `bamazonCustomer.js` if:
-    ** You would like to view the products for sale
-    ** You would like to make a purchase
+    * You would like to view the products for sale
+    * You would like to make a purchase
     
 * Use `bamazonManager.js` if:
-    ** You would like to view the store's entire inventory
-    ** You would like to see which products are running low
-    ** You would like to add to a product's inventory
-    ** You would like to add a new product to the store's inventory
+    * You would like to view the store's entire inventory
+    * You would like to see which products are running low
+    * You would like to add to a product's inventory
+    * You would like to add a new product to the store's inventory
     
 * Use 'bamazonSupervisor.js' if:
-    ** You would like to add a new department to the store's product classification system
-    ** You would like to view the store's revenue and profits by department
+    * You would like to add a new department to the store's product classification system
+    * You would like to view the store's revenue and profits by department
 
 ### bamazonCustomer.js
 
@@ -98,13 +98,13 @@ In the example below, the manager adds four cats costing $200.00 to the store's 
 
 The program updates the inventory and low inventory tables accordingly:
 
-<center>##### Inventory Table</center>
+<h5 align = 'center'>Inventory Table</h5>
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/screenshot_one.png' width = '400'>
 </p>
 
-<center>##### Low Inventory Table</center>
+<h5 align = 'center'>Low Inventory Table</h5>
 
 <p align = 'center'>
     <img src = '/bamazon_screenshots/bamazonManager/screenshot_two.png' width = '400'>
