@@ -2,7 +2,7 @@
 
 Click <a href = 'https://youtu.be/LtwHm7RTp_8'>here</a> to watch a video demo of the application. 
 
-bamazon is a command line application that offers full functionality for tracking a store's inventory and aggregates information about products and profits into easy to read tables for managers and supervisors. bamazon consists of three JavaScript programs that offer interfaces for customers, managers and supervisors to interact with a MySQL database that stores the latest information regarding the store's supplies and sales.
+bamazon is a command-line application that offers full functionality for tracking a store's inventory and aggregates information about products and profits into easy to read tables for managers and supervisors. bamazon consists of three JavaScript programs that offer interfaces for customers, managers and supervisors to interact with a MySQL database that stores the latest information regarding the store's supplies and sales.
 
 ## Using Bamazon
 
